@@ -24,8 +24,8 @@
 
         .form-section-heading {
             font-weight: 600;
-            color: rgb(63 79 148);
-            border-bottom: 2px solid rgb(63 79 148);
+            color: black;
+            border-bottom: 2px solid #ADCD25;
             padding-bottom: 0.25rem;
             margin-bottom: 1rem;
         }
@@ -46,7 +46,7 @@
 
         .form-control:focus,
         .form-select:focus {
-            border-color: rgb(63 79 148);
+            border-color: #ADCD25;
             box-shadow: 0 0 0 0.2rem rgba(63, 79, 148, 0.25);
         }
 
@@ -106,8 +106,8 @@
         }
 
         .gradient-btn {
-            background: linear-gradient(45deg, #053d96 0%, #00a0c6 100%);
-            color: #fff;
+            background: linear-gradient(45deg, #cdff00 0%, #799402 100%);;
+            color: black;
             font-weight: 500;
             border: none;
             transition: all 0.3s ease;

@@ -104,7 +104,7 @@
         }
 
         .badge-expiring {
-            background-color: #3b82f6;
+            background-color: #ADCD25;
             /* blue accent */
             color: #fff;
             font-size: 0.7rem;
@@ -112,13 +112,13 @@
         }
 
         .btn-renew {
-            background-color: #3b82f6;
+            background-color: #ADCD25;
             /* blue accent */
-            border: 1px solid #3b82f6;
+            border: 1px solid #ADCD25;
             font-size: 0.82rem;
             font-weight: 500;
             border-radius: 4px;
-            color: #fff;
+            color: black;
             transition: 0.2s ease;
         }
 
@@ -144,11 +144,12 @@
 
 
         .custom-table-header th {
-            background: #023762;
-            color: #fff;
+            background: #ADCD25;
+            color: black;
             padding: 12px;
             text-align: center;
             border: none;
+            font-weight: 500;
             /* remove table default border if needed */
         }
 
@@ -186,7 +187,7 @@
             font-size: 0.8rem;
             padding: 3px 8px;
             border-radius: 5px;
-            color: #fff;
+            color: black;
             transition: 0.2s ease;
         }
 
@@ -274,7 +275,7 @@
             border-radius: 12px;
             padding: 4px;
             /* border thickness */
-            background: linear-gradient(47deg, #041f4b, #4d0096, #01586d, #002054);
+            background: linear-gradient(45deg, #cdff00 0%, #799402 100%);
 
             background-size: 400% 400%;
             -webkit-mask:

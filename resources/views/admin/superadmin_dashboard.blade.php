@@ -11,8 +11,8 @@
 
     /* Global Styles */
     body {
-        background-color: #f4f6f9;
-        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        background-color: #e6e7e8;
+        font-family: 'Poppins', sans-serif;
     }
 
     /* Dashboard Header */
@@ -24,8 +24,8 @@
 
     /* Add Gym Button */
     .btn-add-gym {
-        background-image: linear-gradient(45deg, #023661 0%, #015f70 100%);
-        color: white;
+        background-image: linear-gradient(45deg, #cdff00 0%, #799402  100%);
+        color: black;
         font-weight: 500;
         border: none;
         padding: 10px 25px;
@@ -39,6 +39,21 @@
         box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
     }
 
+    .btn-danger {
+    background-color: transparent;
+    color: #ff4d4d; /* Subtle Red */
+    border: 1px solid #ff4d4d;
+    padding: 5px 10px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #ff4d4d;
+    color: white;
+    box-shadow: 0 4px 10px rgba(255, 77, 77, 0.2);
+}
+
     /* Table Professional Look */
     .card {
         border-radius: 12px;
@@ -46,13 +61,22 @@
     }
 
     .card-title {
-        font-weight: 600;
-        color: #f4f1f1;
-        background: linear-gradient(45deg, #023661 0%, #015f70 100%);
-        padding: 10px 10px 10px 10px;
-        border-top-left-radius: 12px;
-        border-top-right-radius: 12px;
-    }
+    /* Dark professional background */
+    background: linear-gradient(90deg, #1a1a1a 0%, #2d2d2d 100%);
+    
+    /* Your Volt Green for the text and a bottom border */
+    color: #ADCD25; 
+    border-bottom: 3px solid #ADCD25;
+    
+    /* Modern styling */
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 15px 20px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    margin-bottom: 0; /* Ensures the border touches the table */
+}
 
     .table-professional {
         border-collapse: separate;
@@ -62,8 +86,8 @@
     }
 
     .table-professional thead tr {
-        background: linear-gradient(45deg, #023661 0%, #015f70 100%);
-        color: white;
+        background: linear-gradient(45deg, #cdff00 0%, #799402  100%);
+        color: black;
     }
 
     .table-professional th,
@@ -124,12 +148,12 @@
     }
 
     .modal-header-gradient {
-        background-image: linear-gradient(45deg, #023661 0%, #015f70 100%);
-        color: white;
+        background-image: linear-gradient(45deg, #cdff00 0%, #799402 100%);;
+        color: black;
         border-top-left-radius: 12px;
         border-top-right-radius: 12px;
         border-bottom: none;
-        margin-top: 44px;
+        
     }
 
     .btn-close-white {
@@ -157,7 +181,7 @@
     }
 
     .professional-btn {
-        background-image: linear-gradient(45deg, #023661 0%, #015f70 100%);
+        background-image: linear-gradient(45deg, #cdff00 0%, #799402 100%);;
         border: none;
         font-weight: 600;
         transition: all 0.3s ease;
@@ -203,7 +227,7 @@
     font-size: 0.75rem;
     padding: 4px 44px !important;
     border-radius: 4px;
-    background: linear-gradient(45deg, #053d96 0%, #00a0c6 100%);
+    background: linear-gradient(45deg, #cdff00 0%, #799402  100%);
     color: #fff;
     border: none;
     flex: 1;
@@ -306,7 +330,7 @@
                                 data-email="{{ $gym->email }}"
                                 data-phone="{{ $gym->phone }}"
                                 data-address="{{ $gym->address }}"
-                                data-status="{{ $gym->status }}"  style="background: linear-gradient(45deg, #053d96 0%, #00a0c6 100%); color:white;">
+                                data-status="{{ $gym->status }}"  style="background: linear-gradient(45deg, #cdff00 0%, #799402 100%); color:black;">
                                 <i class="bi bi-pencil-square"></i> Edit
                             </button>
 
@@ -429,8 +453,8 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content professional-modal">
             <div class="modal-header modal-header-gradient">
-                <h5 class="modal-title text-white" id="modalTitle">Add New Gym Company</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                <h5 class="modal-title" id="modalTitle">Add New Gym Company</h5>
+                <button type="button" class="btn-close btn-close-black" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body p-4">
                 <form method="POST" id="gymForm">
@@ -471,7 +495,7 @@
                     </div>
 
  
-                    <button type="submit" class="btn " id="submitBtn" style="background:linear-gradient(45deg, #023661 0%, #015f70 100%); color:white;">Add Gym</button>
+                    <button type="submit" class="btn " id="submitBtn" style="background:linear-gradient(45deg, #cdff00 0%, #799402 100%);; color:black;">Add Gym</button>
                 </form>
             </div>
         </div>

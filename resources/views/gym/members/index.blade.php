@@ -14,12 +14,13 @@
         h2.dashboard-heading {
             font-weight: 600;
             font-size: 1.5rem;
-            color: #f0f4fa;
+            color: #0f1010;
+            
         }
 
         /* Table Styles */
         table.table thead {
-            background: linear-gradient(90deg, #3b82f6, #a855f7);
+            background: linear-gradient(45deg, #cdff00 0%, #799402  100%);
             color: #fff;
             font-weight: 500;
             font-size: 0.95rem;
@@ -168,7 +169,7 @@
             font-size: 0.75rem;
             padding: 4px 4px !important;
             border-radius: 4px;
-            background: linear-gradient(45deg, #053d96 0%, #00a0c6 100%);
+            background: linear-gradient(45deg, #cdff00 0%, #799402 100%);;
             color: #fff;
             border: none;
             flex: 1;
@@ -184,6 +185,39 @@
 
         .btn-action:active {
             transform: scale(0.95);
+        }
+
+        /* DataTables pagination and controls at bottom */
+        .dataTables_wrapper .dataTables_paginate {
+            text-align: center !important;
+            margin-top: 16px;
+        }
+
+        .dataTables_wrapper .dataTables_info {
+            text-align: center !important;
+            margin-top: 10px;
+        }
+
+        .dataTables_wrapper .dataTables_length,
+        .dataTables_wrapper .dataTables_filter {
+            margin-bottom: 0.75rem;
+        }
+
+        .card-head{
+             background: linear-gradient(90deg, #1a1a1a 0%, #2d2d2d 100%);
+    
+    /* Your Volt Green for the text and a bottom border */
+    color: #ADCD25; 
+    border-bottom: 3px solid #ADCD25;
+    
+    /* Modern styling */
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 15px 20px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    margin-bottom: 0;
         }
     </style>
 @endsection
@@ -210,18 +244,18 @@
         <div class="card shadow-sm p-3" style="background: var(--card-bg); border-radius:8px;">
 
             {{-- Search + Export --}}
-           <div class="d-flex justify-content-end mb-3 gap-2">
+           <div class="d-flex justify-content-end mb-2 gap-2 card-head">
                     {{-- Header --}}
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="dashboard-heading"></h2>
+            <!-- <h2 class="dashboard-heading">Members List</h2> -->
             <a href="{{ route('gym.members.create') }}" class="btn   shadow-sm"
-                style="background: linear-gradient(45deg, #053d96 0%, #00a0c6 100%); color:#fff; ">
+                style="background: linear-gradient(45deg, #cdff00 0%, #799402 100%); color:black; ">
                 <i class="bi bi-plus-circle me-2"></i> Add
             </a>
         </div>
                 <div class="dropdown">
                     <button class="btn btn-outline-dark btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                        style="font-size:0.85rem; padding:0.45rem 0.75rem;">
+                        style="font-size:0.85rem; padding:0.45rem 0.75rem; background: linear-gradient(45deg, #cdff00 0%, #799402 100%); color:black;">
                         <i class="bi bi-download me-1"></i> Export
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
@@ -248,9 +282,9 @@
 
                     <table id="membersTable" class="table align-middle table-hover"
                         style="border-collapse: separate; border-spacing:0 6px;">
-                        <thead style="background: var(--accent-gradient); color:#fff; font-weight:500; font-size:0.9rem;">
+                        <thead style="background:#ADCD25; color:#fff; font-weight:500; font-size:0.9rem;">
                             <tr>
-                                <th>Photo</th>
+                                <!-- <th>Photo</th> -->
                                 <th>Member ID</th>
                                 <th>Name</th>
                                 <th>Aadhar no</th>
@@ -263,8 +297,8 @@
                         </thead>
                         <tbody>
                             @forelse($members as $member)
-                                <tr style="background:#f8fafc; border-radius:6px;">
-                                    <td>
+                                <tr style="background:#ADCD25; border-radius:6px;">
+                                    <!-- <td>
                                         @if ($member->photo_path)
                                             <img src="{{ url('storage/app/public/' . $member->photo_path) }}"
                                                 class="rounded-circle" width="45" height="45"
@@ -275,7 +309,7 @@
                                                 <i class="bi bi-person-circle text-muted" style="font-size:1.2rem;"></i>
                                             </div>
                                         @endif
-                                    </td>
+                                    </td> -->
                                     <td>{{ $member->member_id }}</td>
                                     <td>{{ $member->first_name }} {{ $member->last_name }}</td>
                                     <td>{{ $member->aadhar_no ?? '-' }}</td>
@@ -314,10 +348,13 @@
                     <script>
                         $(document).ready(function() {
                             $('#membersTable').DataTable({
-                                "paging": true,
-                                "searching": true, // ✅ built-in search/filter
-                                "ordering": true,
-                                "info": true
+                                paging: true,
+                                searching: true,
+                                ordering: true,
+                                info: true,
+                                pageLength: 25,
+                                lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                                dom: '<"top"f>rt<"bottom"lip><"clear">'
                             });
                         });
                     </script>

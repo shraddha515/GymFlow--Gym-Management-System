@@ -4,7 +4,7 @@
     <style>
         /* Report Cards */
         .report-card {
-            border: 2px solid #3b82f6;
+            border: 2px solid #799402;
             /* theme border color (blue shade) */
             border-radius: 8px;
             padding: 15px;
@@ -59,7 +59,7 @@
         .report-filter .form-select {
             font-size: 0.85rem;
             padding: 4px 8px;
-            border: 1px solid #3b82f6;
+            border: 1px solid #799402;
             /* theme border color */
             border-radius: 6px;
         }
@@ -72,17 +72,17 @@
         }
 
         .report-filter .btn-primaryy {
-            background: linear-gradient(45deg, #3b82f6 0%, #a855f7 100%);
+            background: linear-gradient(45deg, #cdff00 0%, #799402 100%);;
             /* theme blue */
-            border-color: #3b82f6;
+            border-color: #799402;
             font-size: 0.85rem;
             padding: 6px;
             border-radius: 6px;
         }
 
         .report-filter .btn-primaryy:hover {
-            background-color: #2563eb;
-            border-color: #2563eb;
+            background-color: #799402;
+            border-color: #799402;
         }
 
         /* Responsive adjustments */
@@ -99,6 +99,23 @@
                 padding: 5px;
             }
         }
+
+        .card-header {
+        background: linear-gradient(90deg, #1a1a1a 0%, #2d2d2d 100%);
+
+        /* Your Volt Green for the text and a bottom border */
+        color: #ADCD25;
+        border-bottom: 3px solid #ADCD25;
+
+        /* Modern styling */
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding: 15px 20px;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        margin-bottom: 0;
+    }
     </style>
     <div class="container py-4 px-4"  style="min-width: 80vw;">
         <h2 class="mb-3 @if (!request()->has('pdf')) text-white @endif">Gym Reports</h2>
@@ -191,7 +208,7 @@
 
         <!-- Table Section -->
         <div class="card shadow-sm border-0">
-            <div class="card-header text-white" style="background: linear-gradient(45deg, #023661 0%, #015f70 100%);">
+            <div class="card-header text-white">
                 <h5 class="mb-0">{{ ucfirst($type) }} Details</h5>
             </div>
 

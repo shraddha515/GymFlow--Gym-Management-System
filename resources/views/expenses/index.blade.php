@@ -25,9 +25,9 @@
         }
 
         .input-group .form-control:focus {
-            border-color: #86b7fe;
-            /* Bootstrap's focus color */
-            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+            border-color: #ADCD25;
+            box-shadow: 0 0 0 0.35rem rgba(173, 205, 37, 0.25);
+            outline: none;
         }
 
         .input-group-text {
@@ -57,7 +57,7 @@
 
         .btn-primary {
             background: var(--accent-gradient);
-            color: var(--text-light);
+            color: var(--text-dark);
         }
 
         .btn-outline-warning {
@@ -112,14 +112,26 @@
         }
 
         .card-header {
-            background: var(--topbar-gradient);
-            border-bottom: none;
-            padding: 1rem 1.5rem;
+             background: linear-gradient(90deg, #1a1a1a 0%, #2d2d2d 100%);
+
+        /* Your Volt Green for the text and a bottom border */
+        color: #ADCD25;
+        border-bottom: 3px solid #ADCD25;
+
+        /* Modern styling */
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding: 15px 20px;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        margin-bottom: 0;
         }
 
         .card-title {
             font-weight: 600;
         }
+
 
         /* Form Styling */
         .form-label {
@@ -142,10 +154,14 @@
             transition: all 0.2s ease-in-out;
         }
 
-        .form-control:focus {
+        .form-control:focus,
+        .form-select:focus,
+        textarea.form-control:focus,
+        .glow-textarea:focus {
             background-color: #ffffff;
-            border-color: #a855f7;
-            box-shadow: 0 0 0 0.2rem rgba(168, 85, 247, 0.25);
+            border-color: #ADCD25;
+            box-shadow: 0 0 0 0.35rem rgba(173, 205, 37, 0.25);
+            outline: none;
         }
 
         .btn-success {
@@ -153,6 +169,7 @@
             border: none;
             font-weight: 600;
             transition: all 0.2s ease;
+            color: black;
         }
 
         .btn-success:hover {
@@ -191,9 +208,20 @@
 
         /* Modal Styling */
         .modal-header {
-            background: var(--topbar-gradient);
-            border-bottom: none;
-            color: var(--text-light);
+            background: linear-gradient(90deg, #1a1a1a 0%, #2d2d2d 100%);
+
+        /* Your Volt Green for the text and a bottom border */
+        color: #ADCD25;
+        border-bottom: 3px solid #ADCD25;
+
+        /* Modern styling */
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding: 15px 20px;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        margin-bottom: 0;
         }
 
         .modal-header .btn-close {
@@ -223,7 +251,7 @@
         }
     </style>
     <div class="container py-4" style="min-width: 80vw;">
-        <h3 class="mb-3">Gym Expenses</h3>
+        <h3 class="mb-3 " style="color: #ADCD25;">Gym Expenses</h3>
 
         {{-- Success/Error Messages --}}
         @if (session('success'))
@@ -391,7 +419,7 @@
 
                                 <div class="mb-3">
                                     <label for="description" class="form-label">Description</label>
-                                    <textarea id="description" name="description" class="form-control form-control-sm" rows="2">{{ old('description') }}</textarea>
+                                    <textarea id="description" name="description" class="form-control form-control-sm glow-textarea" rows="2">{{ old('description') }}</textarea>
                                 </div>
                                 <div class="d-grid gap-2">
                                     <button type="submit" class="btn btn-success mt-2"><i
@@ -407,7 +435,7 @@
                 <div class="card expenses-table-card shadow-sm">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h5 class="card-title mb-0 text-white">Expenses List</h5>
-                        <span class="badge bg-primary rounded-pill">Total: {{ number_format($total, 2) }}</span>
+                        <span class="badge bg-success rounded-pill">Total: {{ number_format($total, 2) }}</span>
                     </div>
                     <div class="card-body p-0">
                         <div class="table-responsive">

@@ -18,13 +18,14 @@
 
     <style>
         :root {
-            /* --bg-gradient: linear-gradient(135deg, #082841 0%, #06233ad0 100%); */
-            --sidebar-gradient: linear-gradient(180deg, #000000 0%, #000000 100%);
-            --topbar-gradient: linear-gradient(45deg, #023661 0%, #015f70 100%);
-            --accent-gradient: linear-gradient(45deg, #053d96 0%, #00a0c6 100%);
-            --text-light: #e0e0e0;
-            --text-dark: #090a0d;
+            --sidebar-gradient: linear-gradient(180deg, #0f1115 0%, #000000 100%);
+            --topbar-gradient: linear-gradient(45deg, #16191e 0%, #1c2128 100%);
+            --accent-gradient: linear-gradient(45deg, #cdff00 0%, #799402 100%);
+            /* Slightly richer green */
+            --text-light: #f0f2f5;
+            --text-dark: #1a1a1a;
             --card-bg: #ffffff;
+            /* Keeping white for readability, but try #fcfcfc */
         }
 
         body {
@@ -37,24 +38,22 @@
         /* 2. Background Image Container */
         .bg-image-container {
             position: fixed;
-            /* इसे स्क्रीन पर फिक्स रखें */
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            /* इसे सबसे पीछे (content के नीचे) रखें */
             overflow: hidden;
-            /* extra image area को hide करें */
+
         }
 
         .bg-image-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* इमेज को पूरी तरह से कवर करने दें */
+
             filter: brightness(0.6) grayscale(0.5);
-            /* 💡 थोड़ा डार्क और grayscale effect */
+
         }
 
         /* 3. White Faded Overlay Effect */
@@ -121,14 +120,14 @@
             }
         } */
 
-       .sidebar .sidebar-header .sidebar-logo {
-    height: 4.8rem;   /* पहले h3 का font-size 1.8rem था */
-    width: auto;      /* width auto ताकि aspect ratio सही रहे */
-    margin-bottom: 30px;
-    margin-top: 20px;
-    display: block;   /* image को block बना देंगे ताकि नीचे space मिले */
-    /* filter: drop-shadow(0 0 5px #bcc4da); पहले text-shadow था */
-}
+        .sidebar .sidebar-header .sidebar-logo {
+            height: 11.8rem;
+            width: auto;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
 
         .sidebar-menu a {
             display: flex;
@@ -165,21 +164,35 @@
         }
 
         .btn-logout {
-            background: var(--accent-gradient);
-            border: none;
-            padding: 12px 45px;
-            margin: 20px 42px;
-            border-radius: 10px;
-            font-weight: 600;
-            color: #fff;
-            transition: 0.3s;
-            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+            /* Dark, transparent background to blend with sidebar */
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(173, 205, 37, 0.3);
+            /* Subtle green border */
+
+            padding: 10px 25px;
+            /* Slightly slimmer padding */
+            margin: 20px auto;
+            /* Centering it better */
+            display: block;
+            width: 80%;
+            /* Making it fit better in the sidebar */
+
+            border-radius: 8px;
+            font-weight: 500;
+            color: #ADCD25;
+            /* Green text instead of black */
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .btn-logout:hover {
-            opacity: 0.9;
+            /* Lights up on hover! */
+            background: var(--accent-gradient);
+            color: #000000;
+            border-color: transparent;
+            box-shadow: 0 0 15px rgba(173, 205, 37, 0.4);
             transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(59, 130, 246, 0.4);
         }
 
         /* Topbar */
@@ -371,7 +384,7 @@
     </div>
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <img src="{{ asset('asset/Logo.png') }}" alt="Gym-Suvidha Logo" class="sidebar-logo">
+            <img src="{{ asset('asset/GymFlow.png') }}" alt="Gym-Suvidha Logo" class="sidebar-logo">
         </div>
         <button class="btn-close d-lg-none sidebar-close-btn position-absolute top-0 end-0 m-2" id="sidebar-close-btn">
         </button>
@@ -379,47 +392,47 @@
 
         <div class="sidebar-menu">
             @php
-                $user = Auth::user();
-                $role = $user?->role;
+            $user = Auth::user();
+            $role = $user?->role;
             @endphp
 
             {{-- Conditional Links Based on Role --}}
             {{-- SuperAdmin Links --}}
             @if ($user && $role === 'superadmin')
-                <a href="{{ route('superadmin.dashboard') }}" class="active"><i class="bi bi-speedometer2"></i>
-                    SuperAdmin Dashboard</a>
+            <a href="{{ route('superadmin.dashboard') }}" class="active"><i class="bi bi-speedometer2"></i>
+                SuperAdmin Dashboard</a>
             @elseif($user && $role === 'owner')
-                <a class="nav-link" href="{{ route('gym.members.filter') }}">
-                    <i class="bi bi-clock-history me-2"></i> Gym Dashboard
+            <a class="nav-link" href="{{ route('gym.members.filter') }}">
+                <i class="bi bi-clock-history me-2"></i> Gym Dashboard
+            </a>
+
+
+            {{-- Members Dropdown --}}
+            <a class="sidebar-dropdown-toggle collapsed" data-bs-toggle="collapse" href="#members-collapse"
+                role="button" aria-expanded="false" aria-controls="members-collapse">
+                <i class="bi bi-people"></i> Members <i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <div class="collapse" id="members-collapse">
+                <a class="sidebar-dropdown-item" href="{{ route('gym.members.index') }}">
+                    <i class="bi bi-list-ul"></i> Add Members
+                </a>
+                <a class="sidebar-dropdown-item" href="{{ route('gym.staff.index') }}">
+                    <i class="bi bi-person-badge"></i> Staff Members
                 </a>
 
+            </div>
 
-                {{-- Members Dropdown --}}
-                <a class="sidebar-dropdown-toggle collapsed" data-bs-toggle="collapse" href="#members-collapse"
-                    role="button" aria-expanded="false" aria-controls="members-collapse">
-                    <i class="bi bi-people"></i> Members <i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <div class="collapse" id="members-collapse">
-                    <a class="sidebar-dropdown-item" href="{{ route('gym.members.index') }}">
-                        <i class="bi bi-list-ul"></i> Add Members
-                    </a>
-                    <a class="sidebar-dropdown-item" href="{{ route('gym.staff.index') }}">
-                        <i class="bi bi-person-badge"></i> Staff Members
-                    </a>
+            <a href="{{ route('gym.membership') }}"><i class="bi bi-people"></i> Membership Type</a>
 
-                </div>
+            <a href="{{ route('gym.report') }}"><i class="bi bi-graph-up"></i> Reports</a>
 
-                <a href="{{ route('gym.membership') }}"><i class="bi bi-people"></i> Membership Type</a>
-
-                <a href="{{ route('gym.report') }}"><i class="bi bi-graph-up"></i> Reports</a>
-
-                <a href="{{ route('expenses.index') }}"><i class="bi bi-cash"></i> Expenses</a>
-                <a href="{{ route('gym.members.history') }}"><i class="bi bi-cash"></i> Members History</a>
+            <a href="{{ route('expenses.index') }}"><i class="bi bi-cash"></i> Expenses</a>
+            <a href="{{ route('gym.members.history') }}"><i class="bi bi-cash"></i> Members History</a>
             @endif
 
             {{-- Settings is accessible for both roles --}}
             @if ($user && ($role === 'superadmin' || $role === 'owner'))
-                <a href="{{ route('gym.settings') }}"><i class="bi bi-gear"></i> Settings</a>
+            <a href="{{ route('gym.settings') }}"><i class="bi bi-gear"></i> Settings</a>
             @endif
 
         </div>
